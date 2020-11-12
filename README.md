@@ -29,7 +29,7 @@ For example, the input buffer could be a,b,c,d,e,f... so the program would looku
 GZComp also optimizes the header for each block of compressed output using run-length-encoding and creating an optimal prefix code for the code lengths. I then used the block type 2 header features to only encode the non-zero symbols at the end of the literal, distance, and the code length tables. For more information about this optimization, please see section 3.2.7 of RFC 1951. 
 
 ## Running the program
-To run the program, simply clone this repository, and run ./validate to make sure the program is working as intended. This bash script compiles the code and runs the compression algorithm on the large variety of files located in the test_data directory. An example line of output is: 
+To run the program, simply clone this repository, and from the root directory run `./validate` to make sure the program is working as intended. This bash script compiles the code and runs the compression algorithm on the large variety of files located in the test_data directory. An example line of output is: 
 
 `Checking ./test_data/calgary_corpus/book1
 Passed: 321427 bytes (239%)`
