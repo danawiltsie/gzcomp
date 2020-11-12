@@ -159,10 +159,10 @@ int clCounts [CL_TABLE_SIZE];
 std::vector< u32 > construct_canonical_code( std::vector<u32> const & lengths ){
 
     unsigned int size = lengths.size();
-    std::vector< unsigned int > length_counts(16,0); //Lengths must be less than 16 for DEFLATE
+    std::vector< unsigned int > length_counts(MAX_CODE_LENGTH+1,0); //Lengths must be less than 16 for DEFLATE
     u32 max_length = 0;
     for(auto i: lengths){
-        assert(i <= 15);
+        assert(i <= MAX_CODE_LENGTH);
         length_counts.at(i)++;
         max_length = std::max(i, max_length);
     }
