@@ -14,9 +14,9 @@ At a high level, the DEFALTE algorithm works to reduce redundancy in the input f
 ## Program overview: 
  To hold the history and input data, GZComp uses a list.
 
->          current pointer
->                ^
->    [history... | look ahead]
+         current pointer
+                ^
+    [history... | look ahead]
 
 The look ahead always contains 286 characters (provided there are enough characters left in the input file to fill the buffer), and the list in total only holds a max of 32768 characters. Until this limit is reached, as we process the input, we increment the current pointer, and then appropriately add new characters to the end of the list to maintain the look ahead. When we have 32768 characters, we also remove from the beginning of the list for each character added. The limit placed on the number of characters in the history and the lookahead is specified by the DEFALTE algorithm. 
 
