@@ -3,15 +3,15 @@ A C++ program to compress any file in a format that gzip can decompress.
 
 ## Table of contents
 * [General info](#general-info)
-* [Program overview](#program-overview)
-* [Running the program](#running-the-program)
+* [GZComp overview](#gzcomp-overview)
+* [Running GZComp](#running-gzcomp)
 
 ## General info
 For those who are unaware, gzip is a single-stream lossless compression/decompression program that was released in 1993. It is based on the DEFALATE algorithm, an algorithm for file compression that is based upon LZ77 and Huffman coding. Compressed files produced by gzip have the ".gz" suffix. For more information about gzip and DEFALTE, please see the following materials that were used to create GZComp. The first is <a href="https://tools.ietf.org/html/rfc1951" target="_blank">RFC 1951</a> which is the specification for the DEFALTE algorithm. The second is <a href="https://tools.ietf.org/html/rfc1952" target="_blank">RFC 1952</a> which specifies the gzip wrapper around the DEFLATE algorithm. 
 
 At a high level, the DEFALTE algorithm works to reduce redundancy in the input file by generating a back-reference in the place of any string of characters that it encounters that it has seen previously. These back-references include two numbers: how long the repeated string of characters is, and how far back in the file that the repeated string was encountered. The remaining text with backreferences is then encoded using a complicated series of huffman codes in order to further reducce file size. I heavily encourage everyone to look over RFC 1951 to get a better understanding how some of the finer details of the algorithm. 
 
-## Program overview: 
+## GZComp overview: 
  To hold the history and input data, GZComp uses a list.
 
          current pointer
@@ -28,7 +28,7 @@ For example, the input buffer could be a,b,c,d,e,f... so the program would looku
 
 GZComp also optimizes the header for each block of compressed output using run-length-encoding and creating an optimal prefix code for the code lengths. I then used the block type 2 header features to only encode the non-zero symbols at the end of the literal, distance, and the code length tables. For more information about this optimization, please see section 3.2.7 of RFC 1951. 
 
-## Running the program
+## Running GZComp
 To run the program, simply clone this repository, and from the root directory run `./validate` to make sure the program is working as intended. This bash script compiles the code and runs the compression algorithm on the large variety of files located in the test_data directory. An example line of output is: 
 
 `Checking ./test_data/calgary_corpus/book1
